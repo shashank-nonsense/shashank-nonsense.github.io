@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Question For You ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rose-gold: #b76e79;
+            --soft-pink: #ffd1dc;
+            --deep-rose: #8b4654;
+            --cream: #fff8f0;
+            --gold: #d4af37;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #ffe8e8 50%, var(--soft-pink) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts background */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatHeart 15s infinite;
+            color: var(--rose-gold);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Stagger the hearts */
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 18px; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 2s; font-size: 24px; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 4s; font-size: 16px; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 6s; font-size: 22px; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 8s; font-size: 20px; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 3s; font-size: 26px; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 5s; font-size: 18px; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 7s; font-size: 24px; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 1s; font-size: 20px; }
+        .heart:nth-child(10) { left: 15%; animation-delay: 9s; font-size: 22px; }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 40px;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(183, 110, 121, 0.2);
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--deep-rose);
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-out 0.5s both;
+            line-height: 1.2;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .message {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--deep-rose);
+            margin-bottom: 40px;
+            font-weight: 300;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        .message strong {
+            font-weight: 600;
+            color: var(--rose-gold);
+        }
+
+        .question {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--rose-gold);
+            margin: 50px 0 30px;
+            animation: pulse 2s ease-in-out infinite, fadeIn 2s ease-out 1.5s both;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
+        .sparkle:nth-child(3) { bottom: 25%; left: 25%; animation-delay: 0.6s; }
+        .sparkle:nth-child(4) { bottom: 30%; right: 20%; animation-delay: 0.9s; }
+        .sparkle:nth-child(5) { top: 40%; left: 10%; animation-delay: 1.2s; }
+        .sparkle:nth-child(6) { top: 50%; right: 10%; animation-delay: 1.5s; }
+
+        .yes-button {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--rose-gold), var(--deep-rose));
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(183, 110, 121, 0.4);
+            transition: all 0.3s ease;
+            animation: fadeIn 2s ease-out 2.5s both;
+        }
+
+        .yes-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(183, 110, 121, 0.6);
+        }
+
+        .yes-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 600px;
+            margin: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--deep-rose);
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            font-size: 1.3rem;
+            color: var(--rose-gold);
+            line-height: 1.8;
+        }
+
+        .modal-hearts {
+            font-size: 3rem;
+            margin: 20px 0;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(600px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--rose-gold);
+            margin-top: 40px;
+            font-style: italic;
+            animation: fadeIn 2s ease-out 2.5s both;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .message {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .question {
+                font-size: 2rem;
+            }
+
+            .yes-button {
+                font-size: 1.5rem;
+                padding: 15px 40px;
+            }
+
+            .modal-content {
+                padding: 40px 20px;
+            }
+
+            .modal-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .modal-content p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container">
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+        <div class="heart">❤️</div>
+    </div>
+
+    <div class="container">
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+
+        <h1>My Dearest Love</h1>
+        
+        <div class="message">
+            Every moment with you feels like a dream I never want to end.<br>
+            You are my <strong>sunshine</strong> on the darkest days,<br>
+            my <strong>laughter</strong> in moments of joy,<br>
+            and my <strong>peace</strong> in times of chaos.<br><br>
+            
+            You make me want to be the best version of myself,<br>
+            and I can't imagine spending my life with anyone else.<br><br>
+            
+            I love you more than words could ever express.
+        </div>
+
+        <div class="question">
+            Will You Marry Me?
+        </div>
+
+        <button class="yes-button" onclick="showModal()">Yes! 💕</button>
+
+        <div class="footer">
+            Forever yours, with all my heart
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>I knew you'd say yes! 🎉</h2>
+            <div class="modal-hearts">❤️ 💕 ❤️</div>
+            <p>
+                You've just made me the happiest person in the world!<br>
+                I can't wait to spend forever with you.<br><br>
+                <em style="font-size: 0.95em; color: var(--rose-gold);">
+                    (P.S. There was only "Yes" as an option because<br>
+                    I won't leave you to any other man, sweetie 😘)
+                </em>
+                <br><br>
+                I love you so much! ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Background music
+        const music = new Audio();
+        music.src = 'https://cdn.pixabay.com/audio/2022/03/10/audio_4a468cc1c8.mp3'; // Romantic piano music
+        music.loop = true;
+        music.volume = 0.3;
+        
+        // Autoplay music when page loads (with user interaction fallback)
+        window.addEventListener('load', () => {
+            music.play().catch(() => {
+                // If autoplay is blocked, play on first user interaction
+                document.addEventListener('click', () => {
+                    music.play();
+                }, { once: true });
+            });
+        });
+
+        function showModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('active');
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const colors = ['#b76e79', '#d4af37', '#ffd1dc', '#8b4654', '#ff69b4'];
+            const modal = document.querySelector('.modal-content');
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    
+                    // Random shapes
+                    if (Math.random() > 0.5) {
+                        confetti.style.borderRadius = '50%';
+                    }
+                    
+                    modal.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 30);
+            }
+        }
+
+        // Close modal on click outside
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    </script>
+</html>
